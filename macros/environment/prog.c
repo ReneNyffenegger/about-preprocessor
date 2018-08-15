@@ -2,9 +2,9 @@
 
 // #define STRINGIFY(MACRO) #MACRO
 #define QUOTE_MACRO_VALUE(MACRO) #MACRO
-#define print_definition(MACRO) printf("%-20s = %-20s\n", #MACRO, QUOTE_MACRO_VALUE(MACRO))
+#define print_definition(MACRO) printf("%-23s = %s\n", #MACRO, QUOTE_MACRO_VALUE(MACRO))
 
-#define print_undefined(MACRO)  printf("%-20s = n/a\n", #MACRO)
+#define print_undefined(MACRO)  printf("%-23s = n/a\n", #MACRO)
 int main() {
 
 #ifdef __amd64
@@ -20,6 +20,10 @@ int main() {
 #endif
 
 #ifdef __BYTE_ORDER__
+//
+// On intel machines and gcc compilers, the value of __BYTE_ORDER__
+// is 1234 (which corresponds to the value of __ORDER_LITTLE_ENDIAN__).
+//
   print_definition(__BYTE_ORDER__);
 #else
   print_undefined(__BYTE_ORDER__);
@@ -113,6 +117,21 @@ int main() {
   print_definition(_M_X64);
 #else
   print_undefined(_M_X64);
+#endif
+
+#ifdef __ORDER_LITTLE_ENDIAN__
+//
+// See __BYTE_ORDER__
+//
+  print_definition(__ORDER_LITTLE_ENDIAN__);
+#else
+  print_undefined(__ORDER_LITTLE_ENDIAN__);
+#endif
+
+#ifdef __ORDER_BIG_ENDIAN__
+  print_definition(__ORDER_BIG_ENDIAN__);
+#else
+  print_undefined(__ORDER_BIG_ENDIAN__);
 #endif
 
 #ifdef __STDC__

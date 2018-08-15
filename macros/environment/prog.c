@@ -7,10 +7,22 @@
 #define print_undefined(MACRO)  printf("%-20s = n/a\n", #MACRO)
 int main() {
 
+#ifdef __amd64
+  print_definition(__amd64);
+#else
+  print_undefined(__amd64);
+#endif
+
 #ifdef __APPLE__
   print_definition(__APPLE__);
 #else
   print_undefined(__APPLE__);
+#endif
+
+#ifdef BYTE_ORDER
+  print_definition(BYTE_ORDER);
+#else
+  print_undefined(BYTE_ORDER);
 #endif
 
 #ifdef __cplusplus
@@ -174,5 +186,18 @@ int main() {
 #else
   print_undefined(_X86_);
 #endif
+
+#ifdef __x86_64
+  print_definition(__x86_64);
+#else
+  print_undefined(__x86_64);
+#endif
+
+#ifdef __x86_64__
+  print_definition(__x86_64__);
+#else
+  print_undefined(__x86_64__);
+#endif
+
 
 }

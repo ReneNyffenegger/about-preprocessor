@@ -19,10 +19,10 @@ int main() {
   print_undefined(__APPLE__);
 #endif
 
-#ifdef BYTE_ORDER
-  print_definition(BYTE_ORDER);
+#ifdef __BYTE_ORDER__
+  print_definition(__BYTE_ORDER__);
 #else
-  print_undefined(BYTE_ORDER);
+  print_undefined(__BYTE_ORDER__);
 #endif
 
 #ifdef __cplusplus

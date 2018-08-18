@@ -140,10 +140,10 @@ int main() {
   print_undefined(__STDC__);
 #endif
 
-#ifdef STDC_VERSION 
-  print_definition(STDC_VERSION);
+#ifdef __STDC_VERSION__
+  print_definition(__STDC_VERSION__);
 #else
-  print_undefined(STDC_VERSION);
+  print_undefined(__STDC_VERSION__);
 #endif
 
 #ifdef __STRICT_ANSI__

@@ -2,9 +2,9 @@
 
 // #define STRINGIFY(MACRO) #MACRO
 #define QUOTE_MACRO_VALUE(MACRO) #MACRO
-#define print_definition(MACRO) printf("%-23s = %s\n", #MACRO, QUOTE_MACRO_VALUE(MACRO))
+#define print_definition(MACRO) printf("%-24s = %s\n", #MACRO, QUOTE_MACRO_VALUE(MACRO))
 
-#define print_undefined(MACRO)  printf("%-23s = n/a\n", #MACRO)
+#define print_undefined(MACRO)  printf("%-24s = n/a\n", #MACRO)
 int main() {
 
 #ifdef __amd64
@@ -30,6 +30,11 @@ int main() {
 #endif
 
 #ifdef __cplusplus
+//
+// __cplusplus is only defined when compiled with a C++ compiler.
+// It is then used to represent the version of the compiler (for
+// example: 201402L)
+//
   print_definition(__cplusplus);
 #else
   print_undefined(__cplusplus);
@@ -144,6 +149,25 @@ int main() {
   print_definition(__STDC_VERSION__);
 #else
   print_undefined(__STDC_VERSION__);
+#endif
+
+#ifdef __STDC_IEC_559__
+//
+// __STDC_IEC_559__ and __STDC_IEC_559_COMPLEX__ indicate floating
+// point characteristics.
+//
+// Apparently, C++ (also?) has the constants
+//   std::numeric_limits<float>::is_iec559
+//
+  print_definition(__STDC_IEC_559__);
+#else
+  print_undefined(__STDC_IEC_559__);
+#endif
+
+#ifdef __STDC_IEC_559_COMPLEX__
+  print_definition(__STDC_IEC_559_COMPLEX__);
+#else
+  print_undefined(__STDC_IEC_559_COMPLEX__);
 #endif
 
 #ifdef __STRICT_ANSI__

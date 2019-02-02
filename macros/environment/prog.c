@@ -142,7 +142,7 @@ int main() {
 
 #ifdef _M_IX86
  //
- // Microsoft's Visual C compiler defines _M_IX86
+ // Microsoft's Visual C compiler and MinGW/GCC define _M_IX86
  // to 600 if x86 processors are targeted.
  //
     print_definition(_M_IX86);

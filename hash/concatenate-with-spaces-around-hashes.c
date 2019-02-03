@@ -6,14 +6,20 @@
 
 int main() {
 
-  DECLARE_NUM_A( num, One   );
-  DECLARE_NUM_B( num, Two   );
-  DECLARE_NUM_C( num, Three );
+ //
+ // The following three lines are expanded by the preprocessor to
+ //     int numOne;
+ //     int numTwo
+ //     int numThree
+ //
+    DECLARE_NUM_A( num, One   ); 
+    DECLARE_NUM_B( num, Two   );
+    DECLARE_NUM_C( num, Three );
 
-  numOne   = 42;
-  numTwo   = 99;
-  numThree = -1;
+    numOne   = 42;
+    numTwo   = 99;
+    numThree = -1;
 
-  printf("The numbers are %d %d %d\n", numOne, numTwo, numThree);
+    printf("The numbers are %d %d %d\n", numOne, numTwo, numThree);
 
 }

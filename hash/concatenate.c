@@ -6,11 +6,14 @@
 
 int main() {
 
-  // Declare a variable named FooBar:
-  int CONCAT(Foo, Bar);
+ // Declare a variable named FooBar, after running the
+ // preprocessor, the line will read:
+ //
+ //    int FooBar
+ //
+    int CONCAT(Foo, Bar);
 
-  FooBar = 42;
+    FooBar = 42;
 
-  printf("FooBar = %d\n", FooBar);
-
+    printf("FooBar = %d\n", FooBar);
 }

@@ -7,19 +7,19 @@
 #define print_undefined(MACRO)  printf("%-24s = n/a\n", #MACRO)
 int main() {
 
-#ifdef __amd64
+#ifdef __amd64                  // {
     print_definition(__amd64);
 #else
     print_undefined(__amd64);
-#endif
+#endif // }
 
-#ifdef __APPLE__
+#ifdef __APPLE__                // {
     print_definition(__APPLE__);
 #else
     print_undefined(__APPLE__);
-#endif
+#endif // }
 
-#ifdef __BYTE_ORDER__
+#ifdef __BYTE_ORDER__           // {
 //
 // On intel machines and gcc compilers, the value of __BYTE_ORDER__
 // is 1234 (which corresponds to the value of __ORDER_LITTLE_ENDIAN__).
@@ -27,9 +27,15 @@ int main() {
     print_definition(__BYTE_ORDER__);
 #else
     print_undefined(__BYTE_ORDER__);
-#endif
+#endif // }
 
-#ifdef __cplusplus
+#ifdef __clang__                // {
+    print_definition(__clang__);
+#else
+    print_undefined(__clang__);
+#endif // }
+
+#ifdef __cplusplus              // {
  //
  // Only defined when compiled with a C++ compiler.
  // It is then used to represent the version of the compiler (for
@@ -38,15 +44,15 @@ int main() {
     print_definition(__cplusplus);
 #else
     print_undefined(__cplusplus);
-#endif
+#endif  // }
 
-#ifdef __CYGWIN__
+#ifdef __CYGWIN__               // {
     print_definition(__CYGWIN__);
 #else
     print_undefined(__CYGWIN__);
-#endif
+#endif // }
 
-#ifdef __DATE__
+#ifdef __DATE__                 // {
  //
  // Evaluates to a string literal that
  // represents the date of the compilation.
@@ -56,45 +62,55 @@ int main() {
     print_definition(__DATE__);
 #else
     print_undefined(__DATE__);
-#endif
+#endif // }
 
-#ifdef __ELF__
+#ifdef __ELF__                  // {
     print_definition(__ELF__);
 #else
     print_undefined(__ELF__);
-#endif
+#endif // }
 
-#ifdef __GNUC__
+#ifdef __GNUC__                 // {
+ //
+ // __GNUC__ is defined by all GNU compilers that
+ // use the C preprocessor (C, C++, Objective-C and Fortran).
+ // Apparently, __GNUC__ is also defined when compiling
+ // with clang.
+ //
     print_definition(__GNUC__);
 #else
     print_undefined(__GNUC__);
-#endif
+#endif // }
 
-#ifdef __GNUG__
+#ifdef __GNUG__                 // {
+ //
+ // Equivalent to:
+ //   __GNUC__ && __cplusplus
+ //
     print_definition(__GNUG__);
 #else
     print_undefined(__GNUG__);
-#endif
+#endif // }
 
-#ifdef i386
+#ifdef i386                     // {
     print_definition(i386);
 #else
     print_undefined(i386);
-#endif
+#endif // }
 
-#ifdef __i386__
+#ifdef __i386__                 // {
     print_definition(__i386__);
 #else
     print_undefined(__i386__);
-#endif
+#endif // }
 
-#ifdef _LIBC
+#ifdef _LIBC                    // {
     print_definition(_LIBC);
 #else
     print_undefined(_LIBC);
-#endif
+#endif // }
 
-#ifdef __LINE__
+#ifdef __LINE__                 // {
  //
  // Evaluates to the current line number
  // in the current source file. However, the
@@ -104,27 +120,49 @@ int main() {
     print_definition(__LINE__);
 #else
     print_undefined(__LINE__);
-#endif
+#endif // }
 
-#ifdef __MINGW32__
+#ifdef __MINGW32__              // {
     print_definition(__MINGW32__);
 #else
     print_undefined(__MINGW32__);
-#endif
+#endif // }
 
-#ifdef __linux__
+#ifdef __linux__                // {
     print_definition(__linux__);
 #else
     print_undefined(__linux__);
-#endif
+#endif // }
 
-#ifdef __MACH__
+#ifdef __MACH__                 // {
     print_definition(__MACH__);
 #else
     print_undefined(__MACH__);
-#endif
+#endif // }
 
-#ifdef _M_AMD64
+#ifdef _MSC_FULL_VER            // {
+ //
+ // This macro might be defined by
+ // Visual Studio cl. Compare to
+ // _MSC_VER.
+ //
+    print_definition(_MSC_FULL_VER);
+#else
+    print_undefined(_MSC_FULL_VER);
+#endif // }
+
+#ifdef _MSC_VER                 // {
+ //
+ // This macro is defined when compiling with
+ // Visual Studio cl and evaluates to
+ // the major number of the compiler.
+ //
+    print_definition(_MSC_VER);
+#else
+    print_undefined(_MSC_VER);
+#endif // }
+
+#ifdef _M_AMD64                 // {
  //
  // Microsoft's Visual C compiler defines _M_AMD64
  // to 1 if a 64-bit ARM processor is targeted.
@@ -132,15 +170,15 @@ int main() {
     print_definition(_M_AMD64);
 #else
     print_undefined(_M_AMD64);
-#endif
+#endif // }
 
-#ifdef _M_ARM
+#ifdef _M_ARM                   // {
     print_definition(_M_ARM);
 #else
     print_undefined(_M_ARM);
-#endif
+#endif // }
 
-#ifdef _M_IX86
+#ifdef _M_IX86                  // {
  //
  // Microsoft's Visual C compiler and MinGW/GCC define _M_IX86
  // to 600 if x86 processors are targeted.
@@ -148,9 +186,9 @@ int main() {
     print_definition(_M_IX86);
 #else
     print_undefined(_M_IX86);
-#endif
+#endif // }
 
-#ifdef _M_X64
+#ifdef _M_X64                   // {
  //
  // Microsoft's Visual C compiler defines _M_X64
  // to 100 if a x64 processor is targeted.
@@ -158,42 +196,42 @@ int main() {
     print_definition(_M_X64);
 #else
     print_undefined(_M_X64);
-#endif
+#endif // }
 
-#ifdef __ORDER_LITTLE_ENDIAN__
+#ifdef __ORDER_LITTLE_ENDIAN__  // {
 //
 // See __BYTE_ORDER__
 //
     print_definition(__ORDER_LITTLE_ENDIAN__);
 #else
     print_undefined(__ORDER_LITTLE_ENDIAN__);
-#endif
+#endif // }
 
-#ifdef __ORDER_BIG_ENDIAN__
+#ifdef __ORDER_BIG_ENDIAN__     // {
     print_definition(__ORDER_BIG_ENDIAN__);
 #else
     print_undefined(__ORDER_BIG_ENDIAN__);
-#endif
+#endif // }
 
-#ifdef __STDC__
+#ifdef __STDC__                 // {
     print_definition(__STDC__);
 #else
     print_undefined(__STDC__);
-#endif
+#endif // }
 
-#ifdef __STDC_HOSTED__
+#ifdef __STDC_HOSTED__          // {
     print_definition(__STDC_HOSTED__);
 #else
     print_undefined(__STDC_HOSTED__);
-#endif
+#endif // }
 
-#ifdef __STDC_VERSION__
+#ifdef __STDC_VERSION__         // {
     print_definition(__STDC_VERSION__);
 #else
     print_undefined(__STDC_VERSION__);
-#endif
+#endif // }
 
-#ifdef __STDC_IEC_559__
+#ifdef __STDC_IEC_559__         // {
 //
 // __STDC_IEC_559__ and __STDC_IEC_559_COMPLEX__ indicate floating
 // point characteristics.
@@ -204,21 +242,21 @@ int main() {
     print_definition(__STDC_IEC_559__);
 #else
     print_undefined(__STDC_IEC_559__);
-#endif
+#endif // }
 
-#ifdef __STDC_IEC_559_COMPLEX__
+#ifdef __STDC_IEC_559_COMPLEX__ // {
     print_definition(__STDC_IEC_559_COMPLEX__);
 #else
     print_undefined(__STDC_IEC_559_COMPLEX__);
-#endif
+#endif // }
 
-#ifdef __STRICT_ANSI__
+#ifdef __STRICT_ANSI__          // {
     print_definition(__STRICT_ANSI__);
 #else
     print_undefined(__STRICT_ANSI__);
-#endif
+#endif // }
 
-#ifdef __TIME__
+#ifdef __TIME__                 // {
  //
  // Similar to __DATE__. The format
  // is "hh:mm:ss", for example:
@@ -227,73 +265,73 @@ int main() {
     print_definition(__TIME__);
 #else
     print_undefined(__TIME__);
-#endif
+#endif // }
 
-#ifdef unix
+#ifdef unix                     // {
     print_definition(unix);
 #else
     print_undefined(unix);
-#endif
+#endif // }
 
-#ifdef __unix
+#ifdef __unix                   // {
     print_definition(__unix);
 #else
     print_undefined(__unix);
-#endif
+#endif // }
 
-#ifdef __unix__
+#ifdef __unix__                 // {
     print_definition(__unix__);
 #else
     print_undefined(__unix__);
-#endif
+#endif // }
 
-#ifdef WINNT
+#ifdef WINNT                    // {
     print_definition(WINNT);
 #else
     print_undefined(WINNT);
-#endif
+#endif // }
 
-#ifdef __WINNT
+#ifdef __WINNT                  // {
     print_definition(__WINNT);
 #else
     print_undefined(__WINNT);
-#endif
+#endif // }
 
-#ifdef __WINNT__
+#ifdef __WINNT__                // {
     print_definition(__WINNT__);
 #else
     print_undefined(__WINNT__);
-#endif
+#endif // }
 
-#ifdef _WIN32
+#ifdef _WIN32                   // {
     print_definition(_WIN32);
 #else
     print_undefined(_WIN32);
-#endif
+#endif // }
 
-#ifdef _WIN64
+#ifdef _WIN64                   // {
     print_definition(_WIN64);
 #else
     print_undefined(_WIN64);
-#endif
+#endif // }
 
-#ifdef _X86_
+#ifdef _X86_                    // {
     print_definition(_X86_);
 #else
     print_undefined(_X86_);
-#endif
+#endif // }
 
-#ifdef __x86_64
+#ifdef __x86_64                 // {
     print_definition(__x86_64);
 #else
     print_undefined(__x86_64);
-#endif
+#endif // }
 
-#ifdef __x86_64__
+#ifdef __x86_64__               // {
     print_definition(__x86_64__);
 #else
     print_undefined(__x86_64__);
-#endif
-
+#endif // }
 
 }
+

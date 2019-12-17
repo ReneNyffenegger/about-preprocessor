@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// #define STRINGIFY(MACRO) #MACRO
 #define QUOTE_MACRO_VALUE(MACRO) #MACRO
 #define print_definition(MACRO) printf("%-24s = %s\n", #MACRO, QUOTE_MACRO_VALUE(MACRO))
 
@@ -17,6 +16,16 @@ int main() {
     print_definition(__APPLE__);
 #else
     print_undefined(__APPLE__);
+#endif // }
+
+#ifdef __ASSEMBLER__            // {
+ //
+ // Defined if preprocessing assembly language (at least
+ // when using GNU)
+ //
+    print_definition(__ASSEMBLER__);
+#else
+    print_undefined(__ASSEMBLER__);
 #endif // }
 
 #ifdef __BYTE_ORDER__           // {
@@ -54,7 +63,7 @@ int main() {
 
 #ifdef __DATE__                 // {
  //
- // Evaluates to a string literal that
+ // Evaluates to a 11 character string literal that
  // represents the date of the compilation.
  // The format is "Mmm dd yyyy", for example:
  //    "Feb  2 2019"
@@ -80,6 +89,12 @@ int main() {
     print_definition(__GNUC__);
 #else
     print_undefined(__GNUC__);
+#endif // }
+
+#ifdef __GNUC_STDC_INLINE__          // {
+    print_definition(__GNUC_STDC_INLINE__);
+#else
+    print_undefined(__GNUC_STDC_INLINE__);
 #endif // }
 
 #ifdef __GNUG__                 // {
@@ -178,10 +193,20 @@ int main() {
     print_undefined(_M_ARM);
 #endif // }
 
+#ifdef _M_IA64                  // {
+ //
+ // Microsoft's compiler defines on
+ // macro for 64-bit Intel platforms.
+ //
+    print_definition(_M_IA64);
+#else
+    print_undefined(_M_IA64);
+#endif // }
+
 #ifdef _M_IX86                  // {
  //
  // Microsoft's Visual C compiler and MinGW/GCC define _M_IX86
- // to 600 if x86 processors are targeted.
+ // to 600 if 32-bit Intel processors are targeted.
  //
     print_definition(_M_IX86);
 #else
@@ -198,11 +223,20 @@ int main() {
     print_undefined(_M_X64);
 #endif // }
 
+#ifdef __OBJC__  // {
+ //
+ // Defined if Objective-C compiler is used.
+ //
+    print_definition(__OBJC__);
+#else
+    print_undefined(__OBJC__);
+#endif // }
+
 #ifdef __ORDER_LITTLE_ENDIAN__  // {
-//
-// See __BYTE_ORDER__
-//
-    print_definition(__ORDER_LITTLE_ENDIAN__);
+ //
+ // See __BYTE_ORDER__
+ //
+     print_definition(__ORDER_LITTLE_ENDIAN__);
 #else
     print_undefined(__ORDER_LITTLE_ENDIAN__);
 #endif // }
@@ -214,31 +248,80 @@ int main() {
 #endif // }
 
 #ifdef __STDC__                 // {
+ //
+ // __STDC__ being 1 signifies that compiler
+ // conforms to ISO Standard C
+ //
     print_definition(__STDC__);
 #else
     print_undefined(__STDC__);
 #endif // }
 
 #ifdef __STDC_HOSTED__          // {
+ //
+ // If 1, the compiler's target is
+ // a hosted environment.
+ //
     print_definition(__STDC_HOSTED__);
 #else
     print_undefined(__STDC_HOSTED__);
 #endif // }
 
+#ifdef __STDC_NO_COMPLEX__       // {
+ //
+ // If defined, complex.h is not available.
+ //
+    print_definition(__STDC_NO_COMPLEX__);
+#else
+    print_undefined(__STDC_NO_COMPLEX__);
+#endif // }
+
+#ifdef __STDC_NO_VLA__          // {
+ //
+ // If defined, the compiler does not
+ // support variable length arrays.
+ //
+    print_definition(__STDC_NO_VLA__);
+#else
+    print_undefined(__STDC_NO_VLA__);
+#endif // }
+
+#ifdef __STDC_UTF_16__          // {
+    print_definition(__STDC_UTF_16__);
+#else
+    print_undefined(__STDC_UTF_16__);
+#endif // }
+
+#ifdef __STDC_UTF_32__          // {
+    print_definition(__STDC_UTF_32__);
+#else
+    print_undefined(__STDC_UTF_32__);
+#endif // }
+
 #ifdef __STDC_VERSION__         // {
+ //
+ // __STDC_VERSION__ was introduced with C94, its
+ // value is yyyymmL and signifies:
+ //    199409L -> 1989 C standard as amended in 1994
+ //    199901L -> 1999 revision of the C standard
+ //    201112L -> 2011 revision of the C standard
+ //    201710L -> 2017 revision of the C standard
+ // Additionally, __STDC_VERSION__ can also assume
+ // some experimental values
+ //
     print_definition(__STDC_VERSION__);
 #else
     print_undefined(__STDC_VERSION__);
 #endif // }
 
 #ifdef __STDC_IEC_559__         // {
-//
-// __STDC_IEC_559__ and __STDC_IEC_559_COMPLEX__ indicate floating
-// point characteristics.
-//
-// Apparently, C++ (also?) has the constants
-//   std::numeric_limits<float>::is_iec559
-//
+ //
+ // __STDC_IEC_559__ and __STDC_IEC_559_COMPLEX__ indicate floating
+ // point characteristics.
+ //
+ // Apparently, C++ (also?) has the constants
+ //   std::numeric_limits<float>::is_iec559
+ //
     print_definition(__STDC_IEC_559__);
 #else
     print_undefined(__STDC_IEC_559__);
@@ -304,12 +387,20 @@ int main() {
 #endif // }
 
 #ifdef _WIN32                   // {
+ //
+ // _WIN32 is defined on both, a 32-bit and
+ // 64-bit Windows environment.
+ //
     print_definition(_WIN32);
 #else
     print_undefined(_WIN32);
 #endif // }
 
 #ifdef _WIN64                   // {
+ //
+ // _WIN64 is defined on a 
+ // 64-bit Windows environment.
+ //
     print_definition(_WIN64);
 #else
     print_undefined(_WIN64);
@@ -334,4 +425,3 @@ int main() {
 #endif // }
 
 }
-

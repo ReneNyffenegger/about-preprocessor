@@ -6,7 +6,28 @@
 #define print_undefined(MACRO)  printf("%-24s = n/a\n", #MACRO)
 int main() {
 
+#ifdef _ARM_                    // {
+    print_definition(_ARM_);
+#else
+    print_undefined(_ARM_);
+#endif // }
+
+#ifdef _ARM64_                  // {
+    print_definition(_ARM64_);
+#else
+    print_undefined(_ARM64_);
+#endif // }
+
+#ifdef _AMD64_                  // {
+    print_definition(_AMD64_);
+#else
+    print_undefined(_AMD64_);
+#endif // }
+
 #ifdef __amd64                  // {
+ //
+ // 2021-02-12: lower case __amd64, really?
+ //
     print_definition(__amd64);
 #else
     print_undefined(__amd64);
@@ -105,6 +126,12 @@ int main() {
     print_definition(__GNUG__);
 #else
     print_undefined(__GNUG__);
+#endif // }
+
+#ifdef _IA64_                   // {
+    print_definition(_IA64_);
+#else
+    print_undefined(_IA64_);
 #endif // }
 
 #ifdef i386                     // {
@@ -398,7 +425,7 @@ int main() {
 
 #ifdef _WIN64                   // {
  //
- // _WIN64 is defined on a 
+ // _WIN64 is defined on a
  // 64-bit Windows environment.
  //
     print_definition(_WIN64);

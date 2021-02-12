@@ -112,7 +112,7 @@ int main() {
     print_undefined(__GNUC__);
 #endif // }
 
-#ifdef __GNUC_STDC_INLINE__          // {
+#ifdef __GNUC_STDC_INLINE__     // {
     print_definition(__GNUC_STDC_INLINE__);
 #else
     print_undefined(__GNUC_STDC_INLINE__);

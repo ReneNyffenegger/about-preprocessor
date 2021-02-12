@@ -1,19 +1,25 @@
 #include <stdio.h>
 
 //
-// https://renenyffenegger.ch/notes/development/languages/C-C-plus-plus/CPP/preprocessor/macros/stringify
+// https://renenyffenegger.ch/notes/development/languages/C-C-plus-plus/preprocessor/if
 //
-#define QuoteIdent(ident) #ident
-#define QuoteMacro(macro) QuoteIdent(macro)
 
+
+int main() {
 
 #define NUM_1   9
 #define NUM_2   1111
 
 #if NUM_1 > NUM_2
-   #define txt_num QuoteMacro(NUM_1) " > " QuoteMacro(NUM_2) "\n"
+    printf("  9 > 1111\n");
 #else
-   #define txt_num QuoteMacro(NUM_1) " < " QuoteMacro(NUM_2) "\n"
+    printf("! 9 > 1111\n");
+#endif
+
+#if NUM_1 < NUM_2
+    printf("  9 < 1111\n");
+#else
+    printf("! 9 < 1111\n");
 #endif
 
 
@@ -21,22 +27,72 @@
 #define CHAR_2   'y'
 
 #if CHAR_1 > CHAR_2
-   #define txt_char QuoteMacro(CHAR_1) " > " QuoteMacro(CHAR_2) "\n"
+   printf("  'f' > 'y'\n");
 #else
-   #define txt_char QuoteMacro(CHAR_1) " < " QuoteMacro(CHAR_2) "\n"
+   printf("! 'f' > 'y'\n");
+#endif
+
+#if CHAR_1 < CHAR_2
+   printf("  'f' < 'y'\n");
+#else
+   printf("! 'f' < 'y'\n");
 #endif
 
 #define STRING_1   foo
 #define STRING_2   bar
 
 #if STRING_1 > STRING_2
-   #define text_str QuoteMacro(STRING_1) " > " QuoteMacro(STRING_2) "\n"
+   printf("  foo > bar\n");
 #else
-   #define text_str QuoteMacro(STRING_1) " < " QuoteMacro(STRING_2) "\n"
+   printf("! foo > bar\n");
 #endif
 
-int main() {
-  printf(txt_num);
-  printf(txt_char);
-  printf(text_str);
+#if STRING_1 < STRING_2
+   printf("  foo < bar\n");
+#else
+   printf("! foo < bar\n");
+#endif
+
+#if STRING_1 == STRING_2
+   printf("  foo == bar\n");
+#else
+   printf("! foo == bar\n");
+#endif
+
+#if AN_UNDEFINED_MACRO > 2000
+   printf("  AN_UNDEFINED_MACRO > 2000\n");
+#else
+   printf("! AN_UNDEFINED_MACRO > 2000\n");
+#endif
+
+#if AN_UNDEFINED_MACRO < 2000
+   printf("  AN_UNDEFINED_MACRO < 2000\n");
+#else
+   printf("! AN_UNDEFINED_MACRO < 2000\n");
+#endif
+
+#if AN_UNDEFINED_MACRO > 0
+   printf("  AN_UNDEFINED_MACRO > 0\n");
+#else
+   printf("! AN_UNDEFINED_MACRO > 0\n");
+#endif
+
+#if AN_UNDEFINED_MACRO < 0
+   printf("  AN_UNDEFINED_MACRO < 0\n");
+#else
+   printf("! AN_UNDEFINED_MACRO < 0\n");
+#endif
+
+#if AN_UNDEFINED_MACRO > 1
+   printf("  AN_UNDEFINED_MACRO > 1\n");
+#else
+   printf("! AN_UNDEFINED_MACRO > 1\n");
+#endif
+
+#if AN_UNDEFINED_MACRO < 1
+   printf("  AN_UNDEFINED_MACRO < 1\n");
+#else
+   printf("! AN_UNDEFINED_MACRO < 1\n");
+#endif
+
 }

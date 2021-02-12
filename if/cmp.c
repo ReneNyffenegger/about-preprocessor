@@ -71,6 +71,12 @@ int main() {
    printf("! AN_UNDEFINED_MACRO < 2000\n");
 #endif
 
+#if AN_UNDEFINED_MACRO == 0
+   printf("  AN_UNDEFINED_MACRO == 0\n");
+#else
+   printf("! AN_UNDEFINED_MACRO == 0\n");
+#endif
+
 #if AN_UNDEFINED_MACRO > 0
    printf("  AN_UNDEFINED_MACRO > 0\n");
 #else

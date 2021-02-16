@@ -451,4 +451,6 @@ int main() {
     print_undefined(__x86_64__);
 #endif // }
 
+  printf("\nsizeof(void*)            = %d\n", sizeof(void*));
+
 }

@@ -170,6 +170,36 @@ int main() {
     print_undefined(__MINGW32__);
 #endif // }
 
+#ifdef __MINGW32_MAJOR_VERSION  // {
+    print_definition(__MINGW32_MAJOR_VERSION);
+#else
+    print_undefined(__MINGW32_MAJOR_VERSION);
+#endif // }
+
+#ifdef __MINGW32_MINOR_VERSION  // {
+    print_definition(__MINGW32_MINOR_VERSION);
+#else
+    print_undefined(__MINGW32_MINOR_VERSION);
+#endif // }
+
+#ifdef __MINGW64__              // {
+    print_definition(__MINGW64__);
+#else
+    print_undefined(__MINGW64__);
+#endif // }
+
+#ifdef __MINGW64_VERSION_MAJOR  // {
+    print_definition(__MINGW64_VERSION_MAJOR);
+#else
+    print_undefined(__MINGW64_VERSION_MAJOR);
+#endif // }
+
+#ifdef __MINGW64_VERSION_MINOR  // {
+    print_definition(__MINGW64_VERSION_MINOR);
+#else
+    print_undefined(__MINGW64_VERSION_MINOR);
+#endif // }
+
 #ifdef __linux__                // {
     print_definition(__linux__);
 #else

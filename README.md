@@ -1,2 +1,1 @@
-# about-preprocessor
-About the C preprocessor
+# About the C/C++ preprocessor
